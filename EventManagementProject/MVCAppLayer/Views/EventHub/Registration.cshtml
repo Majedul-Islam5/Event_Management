@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Registration";
+}
+
+@if (TempData["Msg"] != null)
+{
+    <span class="alert @TempData["Class"]">@TempData["Msg"]</span>
+}
+
+<form method="post">
+    <h2>Registration Form</h2>
+
+    <div class="col-md-6 align-content-center">
+        @Html.AntiForgeryToken()
+
+        <input type="text" placeholder="Full Name" value="@Model.FullName" name="FullName" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("FullName")</span>
+        <br />
+
+
+        <input type="text" placeholder="Email" value="@Model.Email" name="Email" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Email")</span>
+        <br />
+
+
+        <input type="password" placeholder="Password" name="Password" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Password")</span>
+        <br />
+
+
+        <input type="password" placeholder="Confirm Password" name="ConfPassword" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("ConfPassword")</span>
+        <br />
+
+        <input type="hidden" name="IsActive" value="1" />
+
+
+        <select name="FroleId" class="form-control">
+            <option disabled selected>--Select Role--</option>
+            @foreach (var item in ViewBag.Types)
+            {
+                <option value="@item.RoleId">@item.RoleName</option>
+            }
+        </select>
+        <span class="text-danger">@Html.ValidationMessage("FroleId")</span>
+        <br />
+
+
+        <input type="submit" value="Register" class="btn btn-primary" />
+    </div>
+</form>
