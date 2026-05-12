@@ -1,6 +1,7 @@
 ﻿using BLL.DTOs;
 using BLL.Services;
 using DAL.EF.Tables;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MVCAppLayer.Controllers
@@ -17,7 +18,30 @@ namespace MVCAppLayer.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            return View(new LoginDTO() { });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login(LoginDTO dto)
+        {
+            if (ModelState.IsValid)
+            {
+                var data = service.CheckUser(dto);
+                if (data != null)
+                {
+                    HttpContext.Session.SetString("UserName", data.Email);
+                    HttpContext.Session.SetInt32("UserRole", data.FroleId);
+                    switch (data.FroleId)
+                    {
+                        case 1: return RedirectToAction("AdminDashboard", "Admin");
+                        case 2: return RedirectToAction("OrganizerDashboard", "Organizer");
+                        case 3: return RedirectToAction("AttendeeDashboard", "Attendee");
+                                            }
+                }
+
+            }
+                return View(dto);
         }
 
         [HttpGet]

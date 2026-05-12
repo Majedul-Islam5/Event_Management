@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Runtime;
 using System.Security.Cryptography;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BLL.Services
 {
@@ -27,6 +28,22 @@ namespace BLL.Services
         public bool EmailExists(string Email)
         {
             return userrepo.EmailExists(Email);
+        }
+
+        public bool PasswordCheck(string Email, string Password)
+        {
+            Password = GetMd5(Password);
+            return userrepo.PasswordCheck(Email, Password);
+        }
+
+        public LoginDTO CheckUser(LoginDTO dto)
+        {
+            dto.Password = GetMd5(dto.Password);
+            var data = mapper.Map<User>(dto);
+            data = userrepo.CheckUser(data);
+            var ret = mapper.Map<LoginDTO>(data);
+
+            return ret;
         }
 
         public List<RoleTypeDTO> GetUserType()

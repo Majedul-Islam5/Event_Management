@@ -130,7 +130,6 @@ public partial class EventManagementContext : DbContext
 
             entity.HasOne(d => d.Frole).WithMany(p => p.Users)
                 .HasForeignKey(d => d.FroleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Users_Roles");
         });
 

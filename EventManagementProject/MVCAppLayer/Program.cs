@@ -53,7 +53,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=EventHub}/{action=Registration}/{id?}")
+    pattern: "{controller=EventHub}/{action=Login}/{id?}")
     .WithStaticAssets();
 
 

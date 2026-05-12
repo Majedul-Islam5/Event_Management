@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<form method="post">
+    <h2>Login</h2>
+
+    <div class="col-md-6 align-content-center">
+        @Html.AntiForgeryToken()
+
+        <input type="text" placeholder="Email" value="@Model.Email" name="Email" class="form-control" />
+        <span class="text-danger"> @Html.ValidationMessage("Email") </span>
+        <br />
+
+
+        <input type="password" placeholder="Password" name="Password" class="form-control" />
+        <span class="text-danger"> @Html.ValidationMessage("Password") </span>
+        <br />
+
+
+        <input type="submit" value="Login" class="btn btn-primary" />
+
+    </div>
+</form>

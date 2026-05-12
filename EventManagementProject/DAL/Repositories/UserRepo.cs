@@ -24,6 +24,28 @@ namespace DAL.Repositories
             return true;
         }
 
+        public bool PasswordCheck(string Email, string Password)
+        {
+            var user = (from u in db.Users where u.Email == Email && u.Password == Password select u).SingleOrDefault();
+            if (user == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public User CheckUser(User user)
+        {
+            var userData = (from u in db.Users where u.Email == user.Email && u.Password == user.Password select u).SingleOrDefault();
+            if (userData != null)
+            {
+                return userData;
+            }
+
+            return null;
+        }
+
         public bool Create(User user)
         {
             db.Users.Add(user);
