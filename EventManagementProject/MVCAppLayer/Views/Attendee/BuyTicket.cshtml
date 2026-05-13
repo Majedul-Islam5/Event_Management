@@ -1,0 +1,46 @@
+﻿<form method="post">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Venue</th>
+                <th>Event Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Available Seats</th>
+                <th>Ticket Price</th>
+                <th>Tickets</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>@Model.Title</td>
+                <td>@Model.Description</td>
+                <td>@Model.Venue</td>
+                <td>@Model.EventDate</td>
+                <td>@Model.StartTime</td>
+                <td>@Model.EndTime</td>
+                <td>@Model.AvailableSeats</td>
+                <td>@Model.TicketPrice</td>
+
+                <td>
+                    <input type="number" name="NumberOfTickets" min="1" max="@Model.AvailableSeats" class="form-control form-control-sm" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <input type="hidden" name="FeventId" value="@Model.EventId" />
+    <input type="hidden" name="TicketPrice" value="@Model.TicketPrice" />
+    <input type="hidden" name="BookingStatus" value="Booked" />
+    <input type="hidden" name="PaymentStatus" value="Unpaid" />
+
+    <button type="submit" class="btn btn-success">
+        Confirm Booking
+    </button>
+
+</form>

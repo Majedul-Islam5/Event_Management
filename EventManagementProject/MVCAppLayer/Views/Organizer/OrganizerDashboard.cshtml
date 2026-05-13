@@ -3,5 +3,8 @@
     ViewData["Title"] = "OrganizerDashboard";
 }
 
-<h1>OrganizerDashboard</h1>
+@if (TempData["Msg"] != null)
+{
+    <span class="alert @TempData["Class"]">@TempData["Msg"]</span>
+}
 

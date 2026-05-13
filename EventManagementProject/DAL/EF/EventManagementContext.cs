@@ -42,7 +42,6 @@ public partial class EventManagementContext : DbContext
 
             entity.HasOne(d => d.Attendee).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.AttendeeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Bookings_Users");
 
             entity.HasOne(d => d.Fevent).WithMany(p => p.Bookings)
@@ -79,12 +78,10 @@ public partial class EventManagementContext : DbContext
 
             entity.HasOne(d => d.Fcategory).WithMany(p => p.Events)
                 .HasForeignKey(d => d.FcategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Events_Categories");
 
             entity.HasOne(d => d.Organizer).WithMany(p => p.Events)
                 .HasForeignKey(d => d.OrganizerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Events_Users");
         });
 
@@ -103,7 +100,6 @@ public partial class EventManagementContext : DbContext
 
             entity.HasOne(d => d.Revent).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.ReventId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Reviews_Events");
         });
 

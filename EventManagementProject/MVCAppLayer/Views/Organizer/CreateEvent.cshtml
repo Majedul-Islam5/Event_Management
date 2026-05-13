@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "CreateEvent";
+}
+
+<form method="post">
+    <h2>Create Event</h2>
+
+    <div class="col-md-6 align-content-center">
+        @Html.AntiForgeryToken()
+
+
+        @* <input type="hidden" name="OrganizerId" value="@Model.OrganizerId" /> *@
+
+
+        <select name="FcategoryId" class="form-control">
+            <option disabled selected>--Select Category--</option>
+            @foreach (var item in ViewBag.Types)
+            {
+                <option value="@item.CategoryId">@item.CategoryName</option>
+            }
+        </select>
+        <span class="text-danger">@Html.ValidationMessage("FcategoryId")</span>
+        <br />
+
+
+        <input type="text" placeholder="Title" value="@Model.Title" name="Title" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Title")</span>
+        <br />
+
+
+        <input type="text" placeholder="Description" value="@Model.Description" name="Description" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Description")</span>
+        <br />
+
+
+        <input type="text" placeholder="Venue" value="@Model.Venue" name="Venue" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Venue")</span>
+        <br />
+
+
+        <input type="date" name="EventDate" value="@Model.EventDate" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("EventDate")</span>
+        <br />
+
+
+        <input type="time" name="StartTime" value="@Model.StartTime" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("StartTime")</span>
+        <br />
+
+
+        <input type="time" name="EndTime" value="@Model.EndTime" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("EndTime")</span>
+        <br />
+
+
+        <input type="number" placeholder="Total Seats" value="@Model.TotalSeats" name="TotalSeats" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("TotalSeats")</span>
+        <br />
+
+
+        <input type="number" placeholder="Available Seats" value="@Model.AvailableSeats" name="AvailableSeats" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("AvailableSeats")</span>
+        <br />
+
+
+        <input type="number" placeholder="Ticket Price" value="@Model.TicketPrice" name="TicketPrice" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("TicketPrice")</span>
+        <br />
+
+
+        <input type="hidden" name="Status" value="Pending" />
+
+        <input type="submit" value="Create Event" class="btn btn-primary" />
+    </div>
+</form>
+

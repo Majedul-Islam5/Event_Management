@@ -13,6 +13,9 @@ namespace BLL
             cfg.CreateMap<User, RegistrationDTO>().ReverseMap();
             cfg.CreateMap<User, LoginDTO>().ReverseMap();
             cfg.CreateMap<Role, RoleTypeDTO>().ReverseMap();
+            cfg.CreateMap<Category, CategoryTypeDTO>().ReverseMap();
+            cfg.CreateMap<Event, EventDTO>().ReverseMap();
+            cfg.CreateMap<Booking, BookingDTO>().ReverseMap();
 
             //
             //
