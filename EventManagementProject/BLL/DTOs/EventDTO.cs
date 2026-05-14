@@ -55,7 +55,6 @@ namespace BLL.DTOs
         public int TicketPrice { get; set; }
 
 
-
         [Required]
         public string Status { get; set; }
     }

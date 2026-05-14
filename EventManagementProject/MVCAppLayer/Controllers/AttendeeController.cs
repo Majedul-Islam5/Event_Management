@@ -47,7 +47,7 @@ namespace MVCAppLayer.Controllers
 
             if (service.CreateTicket(dto))
             {
-                return RedirectToAction("AttendeeDashboard");
+                return RedirectToAction("ShowBooking");
             }
 
 
@@ -83,6 +83,38 @@ namespace MVCAppLayer.Controllers
                 return RedirectToAction("Review");
             }
             return View(eventID);
+        }
+
+        [HttpGet]
+        public IActionResult ShowBooking()
+        {
+            int id = service.GetID(HttpContext.Session.GetString("UserName"));
+            var data = service.ShowBooking(id);
+
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult ShowBooking(BookingDTO dto,string Decision)
+        {
+
+            var data = service.GetBookingById(dto.BookingId);
+            dto = data;
+
+            if (Decision.Equals("Pay"))
+            {
+                dto.BookingStatus = "Confirmed";
+                dto.PaymentStatus = 1;
+                service.UpdateBooking(dto);
+                return RedirectToAction("AttendeeDashboard");
+
+            }
+            else
+            {
+                service.CancelBooking(dto.BookingId);
+                return RedirectToAction("AttendeeDashboard");
+            }
+
         }
 
 

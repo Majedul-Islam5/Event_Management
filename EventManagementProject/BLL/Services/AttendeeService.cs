@@ -75,7 +75,38 @@ namespace BLL.Services
         public bool CreateReview(ReviewDTO dto)
         {
             var data = mapper.Map<Review>(dto);
-            return reviewRepo.CreateReview(data); 
+            return reviewRepo.CreateReview(data);
+        }
+
+        public List<BookingDTO> ShowBooking(int id)
+        {
+            var data = bookingRepo.ShowBooking(id);
+            var ret = mapper.Map<List<BookingDTO>>(data);
+
+            return ret;
+        }
+
+        public BookingDTO GetBookingById(int id)
+        {
+            var data = bookingRepo.GetBookingById(id);
+            var ret = mapper.Map<BookingDTO>(data);
+
+            return ret;
+        }
+
+        public bool UpdateBooking(BookingDTO dto)
+        {
+            var data = mapper.Map<Booking>(dto);
+            var ret = bookingRepo.UpdateBooking(data);
+
+            return ret;
+        }
+
+        public bool CancelBooking(int id)
+        {
+            var ret = bookingRepo.CancelBooking(id);
+
+            return ret;
         }
     }
 }

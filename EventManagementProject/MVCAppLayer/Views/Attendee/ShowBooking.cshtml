@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "ShowBooking";
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Venue</th>
+            <th>Event Date</th>
+            <th>Total Tickets</th>
+            <th>Amount to pay Paid</th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Fevent.Title</td>
+                <td>@item.Fevent.Description</td>
+                <td>@item.Fevent.Venue</td>
+                <td>@item.Fevent.EventDate</td>
+                <td>@item.NumberOfTickets</td>
+                <td>@item.TotalAmount</td>
+
+                <td colspan="2">
+                    <form method="post">
+                        <input type="submit" name="Decision" value="Pay" class="btn btn-danger" />
+                        <input type="submit" name="Decision" value="Cancel" class="btn btn-primary" />
+                        <input type="hidden" name="BookingId" value="@item.BookingId" />
+                    </form>
+                </td>
+                
+            </tr>
+        }
+        
+    </tbody>
+</table>
+
