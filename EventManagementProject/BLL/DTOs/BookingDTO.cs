@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.EF.Tables;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,8 +17,10 @@ namespace BLL.DTOs
 
         public int TotalAmount { get; set; }
 
-        public string BookingStatus { get; set; } 
+        public string BookingStatus { get; set; }
 
         public int PaymentStatus { get; set; }
+
+        public EventDTO Fevent { get; set; }
     }
 }

@@ -57,9 +57,33 @@ namespace MVCAppLayer.Controllers
         [HttpGet]
         public IActionResult Review()
         {
-            return View();
+            int id = service.GetID(HttpContext.Session.GetString("UserName"));
+            var data = service.ConfBooking(id);
+
+            return View(data);
         }
 
+        [HttpGet]
+        public IActionResult PostReview(int id)
+        {
+            var data = id;
+            return View(data);
+        }
+
+        [HttpPost]
+
+        public IActionResult PostReview(ReviewDTO dto, int eventID)
+        {
+            dto.RattendeeId = service.GetID(HttpContext.Session.GetString("UserName"));
+            dto.ReventId = eventID;
+
+            if (ModelState.IsValid)
+            {
+                service.CreateReview(dto);
+                return RedirectToAction("Review");
+            }
+            return View(eventID);
+        }
 
 
     }

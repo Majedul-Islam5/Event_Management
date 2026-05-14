@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "DeleteEvent";
+}
+<h1>Are you Sure to Delete?</h1>
+<h3>@Model.Title</h3>
+<h3>@Model.Description</h3>
+<form method="post">
+    <input type="hidden" name="id" value="@Model.EventId" />
+    <input type="submit" name="Decision" value="Yes" class="btn btn-danger" />
+    <input type="submit" name="Decision" value="No" class="btn btn-primary" />
+</form>
+

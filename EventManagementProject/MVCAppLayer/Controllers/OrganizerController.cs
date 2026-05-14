@@ -20,9 +20,12 @@ namespace MVCAppLayer.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult OrganizerDashboard()
         {
-            return View();
+            int id = service.GetID(HttpContext.Session.GetString("UserName"));
+            var data = service.GetOrganizerEvents(id);
+            return View(data);
         }
 
         [HttpGet]
@@ -35,7 +38,7 @@ namespace MVCAppLayer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateEvent(EventDTO dto) 
+        public IActionResult CreateEvent(EventDTO dto)
         {
             int id = service.GetID(HttpContext.Session.GetString("UserName"));
             dto.OrganizerId = id;
@@ -49,6 +52,25 @@ namespace MVCAppLayer.Controllers
             }
             ViewBag.Types = service.GetCategoryType();
             return View(dto);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteEvent(int id)
+        {
+            var data = service.GetEventByID(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteEvent(int id,string Decision)
+        {
+            if (Decision.Equals("Yes"))
+            {
+                service.DeleteEvent(id);
+            }
+
+            return RedirectToAction("OrganizerDashboard");
+            
         }
     }
 }

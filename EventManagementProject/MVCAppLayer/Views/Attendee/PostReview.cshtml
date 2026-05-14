@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "PostReview";
+}
+<form method="post">
+    <label>Rating</label>
+    <br />
+
+    <input type="hidden" name="eventID" value="@Model" />
+    <input type="radio" name="Rating" value="1" /> 1
+    <input type="radio" name="Rating" value="2" /> 2
+    <input type="radio" name="Rating" value="3" /> 3
+    <input type="radio" name="Rating" value="4" /> 4
+    <input type="radio" name="Rating" value="5" /> 5
+
+    <br /><br />
+
+    <textarea name="Comment" class="form-control" placeholder="Write review"></textarea>
+
+    <br /><br />
+
+    <button type="submit">Submit Review</button>
+</form>
+

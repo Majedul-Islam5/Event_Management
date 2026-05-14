@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Review";
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Venue</th>
+            <th>Event Date</th>
+            <th>Total Tickets</th>
+            <th>Amount Paid</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Fevent.Title</td>
+                <td>@item.Fevent.Description</td>
+                <td>@item.Fevent.Venue</td>
+                <td>@item.Fevent.EventDate</td>
+                <td>@item.NumberOfTickets</td>
+                <td>@item.TotalAmount</td>
+
+                <td>
+                    <a class="btn btn-success btn-sm" href="/Attendee/PostReview/@item.FeventId">Review</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

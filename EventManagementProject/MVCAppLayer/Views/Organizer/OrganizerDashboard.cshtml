@@ -8,3 +8,47 @@
     <span class="alert @TempData["Class"]">@TempData["Msg"]</span>
 }
 
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Venue</th>
+            <th>Event Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Total Seats</th>
+            <th>Available Seats</th>
+            <th>Ticket Price</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.Venue</td>
+                <td>@item.EventDate</td>
+                <td>@item.StartTime</td>
+                <td>@item.EndTime</td>
+                <td>@item.TotalSeats</td>
+                <td>@item.AvailableSeats</td>
+                <td>@item.TicketPrice</td>
+                <td>@item.Status</td>
+
+                <td>
+                    <a class="btn btn-success btn-sm" href="/Organizer/DeleteEvent/@item.EventId">Update</a>
+                </td>
+                <td>
+                    <a class="btn btn-success btn-sm" href="/Organizer/DeleteEvent/@item.EventId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

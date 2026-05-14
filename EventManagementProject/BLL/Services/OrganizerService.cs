@@ -42,5 +42,27 @@ namespace BLL.Services
 
             return eventRepo.Create(data);
         }
+
+        public List<EventDTO> GetOrganizerEvents(int id)
+        {
+            var data = eventRepo.GetOrganizerEvents(id);
+            var ret = mapper.Map<List<EventDTO>>(data);
+
+            return ret;
+        }
+
+        public EventDTO GetEventByID(int id)
+        {
+
+            var data = eventRepo.GetEventByID(id);
+            var ret = mapper.Map<EventDTO>(data);
+            return ret;
+
+        }
+
+        public bool DeleteEvent(int id) 
+        {
+            return eventRepo.DeleteEvent(id);
+        }
     }
 }

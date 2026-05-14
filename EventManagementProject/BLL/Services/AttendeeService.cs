@@ -15,14 +15,16 @@ namespace BLL.Services
         CategoryRepo categoryRepo;
         EventRepo eventRepo;
         BookingRepo bookingRepo;
+        ReviewRepo reviewRepo;
 
-        public AttendeeService(UserRepo userrepo, CategoryRepo categoryRepo, EventRepo eventRepo, BookingRepo bookingRepo)
+        public AttendeeService(UserRepo userrepo, CategoryRepo categoryRepo, EventRepo eventRepo, BookingRepo bookingRepo, ReviewRepo reviewRepo)
         {
             this.userrepo = userrepo;
             mapper = MapperConfig.GetMapper();
             this.categoryRepo = categoryRepo;
             this.eventRepo = eventRepo;
             this.bookingRepo = bookingRepo;
+            this.reviewRepo = reviewRepo;
         }
 
         public List<EventDTO> GetEvents(string Title, int CategoryId)
@@ -59,6 +61,21 @@ namespace BLL.Services
             var data = mapper.Map<Booking>(dto);
 
             return bookingRepo.Create(data);
+        }
+
+
+        public List<BookingDTO> ConfBooking(int id)
+        {
+            var data = bookingRepo.ConfBooking(id);
+            var ret = mapper.Map<List<BookingDTO>>(data);
+
+            return ret;
+        }
+
+        public bool CreateReview(ReviewDTO dto)
+        {
+            var data = mapper.Map<Review>(dto);
+            return reviewRepo.CreateReview(data); 
         }
     }
 }
