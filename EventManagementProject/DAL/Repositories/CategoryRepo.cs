@@ -16,5 +16,19 @@ namespace DAL.Repositories
         {
             return db.Categories.ToList();
         }
+
+        public Category GetCategoryByID(int id)
+        {
+            var data = (from u in db.Categories where u.CategoryId == id select u).FirstOrDefault();
+
+            return data;
+        }
+
+        public bool DeleteCategory(int id)
+        {
+            var data = GetCategoryByID(id);
+            db.Categories.Remove(data);
+            return db.SaveChanges() > 0;
+        }
     }
 }

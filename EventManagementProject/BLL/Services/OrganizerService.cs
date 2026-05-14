@@ -51,6 +51,8 @@ namespace BLL.Services
             return ret;
         }
 
+        
+
         public EventDTO GetEventByID(int id)
         {
 

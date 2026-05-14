@@ -58,6 +58,26 @@ namespace DAL.Repositories
             return db.SaveChanges() > 0;
         }
 
-        
+        public User GetUserByID(int id)
+        {
+            var data = (from u in db.Users where u.UserId == id select u).FirstOrDefault();
+
+            return data;
+        }
+
+        public bool DeleteUser(int id)
+        {
+            var data = GetUserByID(id);
+            db.Users.Remove(data);
+            return db.SaveChanges() > 0;
+        }
+
+        public List<User> GetUsersForRole(int id)
+        {
+            var data = (from u in db.Users where u.FroleId == id select u).ToList();
+            return data;
+        }
+
+
     }
 }

@@ -8,6 +8,9 @@ namespace BLL.DTOs
 {
     public class RegistrationDTO
     {
+        public int UserId { get; set; }
+
+
         [Required]
         [StringLength(10, MinimumLength = 3)]
         public string FullName { get; set; }
