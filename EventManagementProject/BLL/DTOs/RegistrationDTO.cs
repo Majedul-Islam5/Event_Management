@@ -1,4 +1,5 @@
 ﻿using BLL.Validations;
+using DAL.EF.Tables;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,7 +23,7 @@ namespace BLL.DTOs
 
         [Required]
         [StringLength(8)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,8}$",ErrorMessage = "Password must contain at least 1 uppercase, 1 lowercase, and 1 number (6-8 characters).")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,8}$", ErrorMessage = "Password must contain at least 1 uppercase, 1 lowercase, and 1 number (6-8 characters).")]
         public string Password { get; set; }
 
         [Required]
@@ -36,5 +37,7 @@ namespace BLL.DTOs
         [Required]
         [Range(1, 3, ErrorMessage = "Please select a valid role.")]
         public int FroleId { get; set; }
+
+        public  RoleTypeDTO Frole { get; set; }
     }
 }

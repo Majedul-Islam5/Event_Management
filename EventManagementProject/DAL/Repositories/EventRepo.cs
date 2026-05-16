@@ -1,5 +1,6 @@
 ﻿using DAL.EF;
 using DAL.EF.Tables;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +22,13 @@ namespace DAL.Repositories
         public List<Event> GetOrganizerEvents(int id)
         {
             var data = (from u in db.Events where u.OrganizerId == id select u).ToList();
+
+            return data;
+        }
+
+        public List<Event> GetAllEvents()
+        {
+            var data = (from u in db.Events.Include(x => x.Organizer) select u).ToList();
 
             return data;
         }
@@ -77,7 +85,16 @@ namespace DAL.Repositories
             var data = GetEventByID(id);
             db.Events.Remove(data);
 
-            return db.SaveChanges()>0;
+            return db.SaveChanges() > 0;
+        }
+
+
+        public bool UpdateEvent(Event data)
+        {
+            var exobj = GetEventByID(data.EventId);
+            db.Entry(exobj).CurrentValues.SetValues(data);
+
+            return db.SaveChanges() > 0;
         }
     }
 }

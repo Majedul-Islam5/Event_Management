@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "ShowUser";
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>User Role</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.Email</td>
+                <td>@item.Frole.RoleName</td>
+                <td>
+                    <a class="btn btn-danger btn-sm" href="/Admin/DeleteUser/@item.UserId">Delete User</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

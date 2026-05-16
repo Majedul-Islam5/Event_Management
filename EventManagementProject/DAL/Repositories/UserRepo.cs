@@ -1,5 +1,6 @@
 ﻿using DAL.EF;
 using DAL.EF.Tables;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -75,6 +76,12 @@ namespace DAL.Repositories
         public List<User> GetUsersForRole(int id)
         {
             var data = (from u in db.Users where u.FroleId == id select u).ToList();
+            return data;
+        }
+
+        public List<User> GetAllUsers()
+        {
+            var data = ( from u in db.Users.Include(x=>x.Frole) select u).ToList();
             return data;
         }
 

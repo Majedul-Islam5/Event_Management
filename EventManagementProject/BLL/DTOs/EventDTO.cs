@@ -1,4 +1,5 @@
 ﻿using BLL.Validations;
+using DAL.EF.Tables;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -57,5 +58,7 @@ namespace BLL.DTOs
 
         [Required]
         public string Status { get; set; }
+
+        public RegistrationDTO Organizer { get; set; }
     }
 }

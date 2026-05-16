@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
+using DAL.EF.Tables;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,32 @@ namespace BLL.Services
         public int GetID(string Email)
         {
             return userrepo.GetID(Email);
+        }
+
+        public EventDTO GetEventByID(int id)
+        {
+
+            var data = eventRepo.GetEventByID(id);
+            var ret = mapper.Map<EventDTO>(data);
+            return ret;
+
+        }
+
+        public List<EventDTO> GetAllEvents()
+        {
+            var data = eventRepo.GetAllEvents();
+            var ret = mapper.Map<List<EventDTO>>(data);
+
+            return ret;
+        }
+
+        public bool UpdateEvent(EventDTO dto)
+        {
+
+            var data = mapper.Map<Event>(dto);
+            var ret = eventRepo.UpdateEvent(data);
+
+            return ret;
         }
 
         public bool DeleteUser(int id)
@@ -74,5 +101,22 @@ namespace BLL.Services
             roleRepo.DeleteRole(id);
             return true;
         }
+
+        public RegistrationDTO GetUserByID(int id)
+        {
+            var data = userrepo.GetUserByID(id);
+            var ret = mapper.Map<RegistrationDTO>(data);
+
+            return ret;
+        }
+
+        public List<RegistrationDTO> GetAllUsers()
+        {
+            var data = userrepo.GetAllUsers();
+            var ret = mapper.Map<List<RegistrationDTO>>(data);
+            return ret;
+        }
+
+
     }
 }

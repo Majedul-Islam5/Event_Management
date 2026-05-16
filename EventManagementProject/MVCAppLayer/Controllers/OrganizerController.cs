@@ -62,7 +62,7 @@ namespace MVCAppLayer.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteEvent(int id,string Decision)
+        public IActionResult DeleteEvent(int id, string Decision)
         {
             if (Decision.Equals("Yes"))
             {
@@ -70,7 +70,31 @@ namespace MVCAppLayer.Controllers
             }
 
             return RedirectToAction("OrganizerDashboard");
-            
+
         }
+
+        [HttpGet]
+        public IActionResult UpdateEvent(int id)
+        {
+            var data = service.GetEventByID(id);
+            ViewBag.Types = service.GetCategoryType();
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateEvent(EventDTO dto)
+        {
+            if (ModelState.IsValid)
+            {
+                service.UpdateEvent(dto);
+                return RedirectToAction("OrganizerDashboard");
+            }
+            ViewBag.Types = service.GetCategoryType();
+            return View(dto);
+        }
+
+
+
     }
 }

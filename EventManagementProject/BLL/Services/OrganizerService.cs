@@ -51,7 +51,7 @@ namespace BLL.Services
             return ret;
         }
 
-        
+
 
         public EventDTO GetEventByID(int id)
         {
@@ -62,9 +62,18 @@ namespace BLL.Services
 
         }
 
-        public bool DeleteEvent(int id) 
+        public bool DeleteEvent(int id)
         {
             return eventRepo.DeleteEvent(id);
+        }
+
+        public bool UpdateEvent(EventDTO dto)
+        {
+
+            var data = mapper.Map<Event>(dto);
+            var ret = eventRepo.UpdateEvent(data);
+
+            return ret;
         }
     }
 }
