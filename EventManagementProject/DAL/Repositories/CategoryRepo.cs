@@ -1,5 +1,6 @@
 ﻿using DAL.EF;
 using DAL.EF.Tables;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +23,25 @@ namespace DAL.Repositories
             var data = (from u in db.Categories where u.CategoryId == id select u).FirstOrDefault();
 
             return data;
+        }
+
+        public bool CreateCategory(Category data)
+        {
+            db.Categories.Add(data);
+            return db.SaveChanges() > 0;
+        }
+
+        public List<Category> ShowCategory()
+        {
+            return db.Categories.ToList();
+        }
+
+        public bool UpdateCategory(Category data)
+        {
+            var exobj = GetCategoryByID(data.CategoryId);
+            db.Entry(exobj).CurrentValues.SetValues(data);
+
+            return db.SaveChanges()>0;
         }
 
         public bool DeleteCategory(int id)

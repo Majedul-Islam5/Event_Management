@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateCategory";
+}
+
+<form method="post">
+    <h2>Update Category</h2>
+
+    <div class="col-md-6 align-content-center">
+        @Html.AntiForgeryToken()
+
+        <input type="text" placeholder="Category Name" value="@Model.CategoryName" name="CategoryName" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("CategoryName")</span>
+        <br />
+
+
+        <input type="text" placeholder="Description" value="@Model.Description" name="Description" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessage("Description")</span>
+        <br />
+
+
+        <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+
+        <input type="submit" value="Update Category" class="btn btn-primary" />
+    </div>
+</form>
+

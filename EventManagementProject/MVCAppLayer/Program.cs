@@ -1,3 +1,4 @@
+using BLL;
 using BLL.Services;
 using DAL.EF;
 using DAL.Repositories;
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<EmailSettings>(
+    builder.Configuration.GetSection("EmailSettings")
+);
 
 builder.Services.AddDbContext<EventManagementContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("EventDbContext ")));

@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "SendEmail";
+}
+
+<form method="post">
+    <div class="col-md-6 align-content-center">
+
+        <label>To:</label><br>
+        <input type="email" name="to" required />
+        <br><br>
+
+        <label>Subject:</label><br>
+        <input type="text" name="subject" required />
+        <br><br>
+
+        <label>Body:</label><br>
+        <textarea name="body" rows="6" cols="40" required></textarea>
+        <br><br>
+
+        <button type="submit">Send Email</button>
+
+    </div>>
+
+</form>

@@ -35,6 +35,25 @@ namespace MVCAppLayer.Controllers
             return RedirectToAction("AdminDashboard");
         }
 
+        [HttpGet]
+        public IActionResult CreateCategory()
+        {
+            return View(new CategoryTypeDTO() { });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateCategory(CategoryTypeDTO dto)
+        {
+
+            if (ModelState.IsValid)
+            {
+                service.CreateCategory(dto);
+                return RedirectToAction("ShowCategory");
+            }
+            return View(dto);
+        }
+
 
         [HttpGet]
         public IActionResult ShowUser()
@@ -59,6 +78,67 @@ namespace MVCAppLayer.Controllers
             }
 
             return RedirectToAction("AdminDashboard");
+        }
+
+
+        [HttpGet]
+        public IActionResult ShowCategory()
+        {
+            var data = service.ShowCategory();
+            return View(data);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteCategory(int id)
+        {
+            var data = service.GetCategoryByID(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCategory(int id, string Decision)
+        {
+            if (Decision.Equals("Yes"))
+            {
+                service.DeleteCategory(id);
+            }
+
+            return RedirectToAction("AdminDashboard");
+        }
+
+        [HttpGet]
+        public IActionResult UpdateCategory(int id)
+        {
+            var data = service.GetCategoryByID(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCategory(CategoryTypeDTO dto)
+        {
+            if (ModelState.IsValid)
+            {
+                service.UpdateCategory(dto);
+                return RedirectToAction("AdminDashboard");
+            }
+            return View(dto);
+        }
+
+
+
+
+        [HttpGet]
+        public IActionResult SendEmail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SendEmail(string to, string subject, string body)
+        {
+            service.SendEmail(to, subject, body);
+            return View();
         }
 
 
