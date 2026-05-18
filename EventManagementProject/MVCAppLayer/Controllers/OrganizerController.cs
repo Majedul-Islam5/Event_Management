@@ -94,6 +94,11 @@ namespace MVCAppLayer.Controllers
             return View(dto);
         }
 
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "EventHub");
+        }
 
 
     }

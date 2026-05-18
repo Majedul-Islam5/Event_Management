@@ -95,7 +95,7 @@ namespace MVCAppLayer.Controllers
         }
 
         [HttpPost]
-        public IActionResult ShowBooking(BookingDTO dto,string Decision)
+        public IActionResult ShowBooking(BookingDTO dto, string Decision)
         {
 
             var data = service.GetBookingById(dto.BookingId);
@@ -115,6 +115,13 @@ namespace MVCAppLayer.Controllers
                 return RedirectToAction("AttendeeDashboard");
             }
 
+        }
+
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "EventHub");
         }
 
 

@@ -21,6 +21,6 @@ namespace BLL.DTOs
 
         public int PaymentStatus { get; set; }
 
-        public EventDTO Fevent { get; set; }
+        public EventDTO? Fevent { get; set; }
     }
 }

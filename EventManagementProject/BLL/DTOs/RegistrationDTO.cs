@@ -38,6 +38,6 @@ namespace BLL.DTOs
         [Range(1, 3, ErrorMessage = "Please select a valid role.")]
         public int FroleId { get; set; }
 
-        public  RoleTypeDTO Frole { get; set; }
+        public  RoleTypeDTO? Frole { get; set; }
     }
 }

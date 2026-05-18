@@ -3,18 +3,24 @@
     ViewData["Title"] = "AttendeeDashboard";
 }
 
+@{
+    Layout = "_AttendeeLayout";
+}
+
 <form method="get" class="mb-3">
 
     <div class="input-group mb-2">
-        <input type="text" name="Title" class="form-control" placeholder="Search events by title..." />
+        <input type="text" name="Title" class="form-control" placeholder="Search events by title" />
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary me-2">
             Search
         </button>
 
-        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilters">
+        <button class="btn btn-outline-secondary me-2" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilters">
             Advanced
         </button>
+        <a href="/Attendee/AttendeeDashboard" class="btn btn-secondary btn-sm"> Reset </a>
+
     </div>
 
 
@@ -34,15 +40,6 @@
                     </select>
                 </div>
 
-                @* <div class="col-md-4">
-                    <label class="form-label">Max Price</label>
-                    <input type="number" name="MaxPrice" class="form-control" placeholder="Price" />
-                </div> *@
-
-            </div>
-
-            <div class="mt-3">
-                <a href="/Attendee/AttendeeDashboard" class="btn btn-secondary btn-sm"> Reset </a>
             </div>
 
         </div>

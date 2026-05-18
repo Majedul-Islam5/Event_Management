@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = "OrganizerDashboard";
 }
+@{
+    Layout = "_OrganizerLayout";
+}
 
 @if (TempData["Msg"] != null)
 {
@@ -42,10 +45,10 @@
                 <td>@item.Status</td>
 
                 <td>
-                    <a class="btn btn-success btn-sm" href="/Organizer/UpdateEvent/@item.EventId">Update</a>
+                    <a class="btn btn-primary btn-sm" href="/Organizer/UpdateEvent/@item.EventId">Update</a>
                 </td>
                 <td>
-                    <a class="btn btn-success btn-sm" href="/Organizer/DeleteEvent/@item.EventId">Delete</a>
+                    <a class="btn btn-danger btn-sm" href="/Organizer/DeleteEvent/@item.EventId">Delete</a>
                 </td>
             </tr>
         }

@@ -59,6 +59,6 @@ namespace BLL.DTOs
         [Required]
         public string Status { get; set; }
 
-        public RegistrationDTO Organizer { get; set; }
+        public RegistrationDTO? Organizer { get; set; }
     }
 }

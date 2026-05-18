@@ -1,4 +1,8 @@
-﻿
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+
 @{
     ViewData["Title"] = "ShowCategory";
 }
@@ -22,7 +26,7 @@
                     <a class="btn btn-danger btn-sm" href="/Admin/DeleteCategory/@item.CategoryId">Delete Category</a>
                 </td>
                 <td>
-                    <a class="btn btn-danger btn-sm" href="/Admin/UpdateCategory/@item.CategoryId">Update Category</a>
+                    <a class="btn btn-primary btn-sm" href="/Admin/UpdateCategory/@item.CategoryId">Update Category</a>
                 </td>
             </tr>
         }
